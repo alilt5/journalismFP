@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Echo Chamber Simulator: An Algorithmic Autobiography</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Custom styles for background and font consistency */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray/off-white background */
+            color: #111827; /* Default dark text color */
+        }
+        .screen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            scroll-snap-align: start;
+        }
+        .card {
+            background-color: #ffffff; /* White card background */
+            border: 1px solid #d1d5db; /* Light gray border */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        /* Tailwind custom utility for the key accent color (Deep Red - credible/bold) */
+        .text-accent { color: #b91c1c; }
+        .bg-accent { background-color: #b91c1c; }
+        .hover\:bg-accent-dark:hover { background-color: #991b1b; }
+        
+        /* CSS for the Doughnut Chart on the final screen */
+        .doughnut-chart {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: conic-gradient(
+                #b91c1c 0% 85%, /* 85% Reinforcing Content - ACCENT */
+                #e5e7eb 85% 100%  /* 15% Other/Ads - LIGHT GRAY */
+            );
+            position: relative;
+            box-shadow: 0 0 10px rgba(185, 28, 28, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Screen 1: Welcome / Initial Choice -->
+    <div id="screen-1" class="screen">
+        <div class="max-w-4xl w-full card rounded-xl p-10 md:p-16 text-center">
+            <h1 class="text-5xl md:text-6xl font-extrabold mb-4 text-gray-900">
+                Welcome to Your <span class="text-accent">Feed</span>
+            </h1>
+            <p class="text-xl text-gray-600 mb-12">
+                You've just created a new account. To get started, tell us what kind of content you are hoping to see right now. The algorithm is waiting.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+                <!-- Tile 1: Serious Analysis (Equal height ensured by h-full and flex) -->
+                <a href="#screen-2A" class="h-full">
+                    <div class="p-6 h-full flex flex-col justify-between rounded-xl bg-gray-100 hover:bg-gray-200 transition duration-300 transform hover:scale-105 border border-gray-300">
+                        <i class="fa-solid fa-scale-balanced text-3xl text-accent mb-3"></i>
+                        <h3 class="text-2xl font-semibold text-gray-900">Serious Analysis</h3>
+                        <p class="text-sm text-gray-600 mt-auto">Critical news, deep dives, and important global updates.</p>
+                    </div>
+                </a>
+                <!-- Tile 2: Light & Fun -->
+                <a href="#screen-2B" class="h-full">
+                    <div class="p-6 h-full flex flex-col justify-between rounded-xl bg-gray-100 hover:bg-gray-200 transition duration-300 transform hover:scale-105 border border-gray-300">
+                        <i class="fa-solid fa-face-laugh-beam text-3xl text-accent mb-3"></i>
+                        <h3 class="text-2xl font-semibold text-gray-900">Light & Fun</h3>
+                        <p class="text-sm text-gray-600 mt-auto">Memes, celebrity gossip, and viral hits.</p>
+                    </div>
+                </a>
+                <!-- Tile 3: Local & Practical -->
+                <a href="#screen-2C" class="h-full">
+                    <div class="p-6 h-full flex flex-col justify-between rounded-xl bg-gray-100 hover:bg-gray-200 transition duration-300 transform hover:scale-105 border border-gray-300">
+                        <i class="fa-solid fa-house-chimney text-3xl text-accent mb-3"></i>
+                        <h3 class="text-2xl font-semibold text-gray-900">Local & Practical</h3>
+                        <p class="text-sm text-gray-600 mt-auto">Neighborhood updates, home tips, and community events.</p>
+                    </div>
+                </a>
+            </div>
+            <p class="text-xs text-gray-500 mt-8">Clicking any option starts your algorithmic journey.</p>
+        </div>
+    </div>
+
+    <!-- Screen 2A: Serious Path Start (Hidden by default, navigated to by anchor) -->
+    <div id="screen-2A" class="screen hidden">
+        <div class="max-w-3xl w-full card rounded-xl p-10">
+            <h2 class="text-4xl font-bold mb-6 text-accent">The First Filter: Serious</h2>
+            <p class="text-gray-600 mb-8">The algorithm noticed you chose 'Serious'. It presents two trending headlines. Which one captures your attention?</p>
+            
+            <div class="grid grid-cols-1 gap-4">
+                <a href="#screen-3A" class="block p-4 rounded-lg bg-gray-100 hover:bg-gray-200 transition duration-300 border border-gray-300">
+                    <h3 class="text-xl font-semibold text-gray-900">"The Quiet Collapse of Global Diplomacy"</h3>
+                    <p class="text-sm text-gray-600">An investigative report on failing international treaties.</p>
+                </a>
+                <a href="#screen-3A" class="block p-4 rounded-lg bg-gray-100 hover:bg-gray-200 transition duration-300 border border-gray-300">
+                    <h3 class="text-xl font-semibold text-gray-900">"Economic Data Shows Minor Signs of Strain"</h3>
+                    <p class="text-sm text-gray-600">A cautious look at the current quarter's market corrections.</p>
+                </a>
+            </div>
+             <a href="#screen-1" class="text-sm text-gray-500 hover:text-accent mt-6 block"><i class="fa-solid fa-rotate-left mr-1"></i> Restart Simulation</a>
+        </div>
+    </div>
+
+    <!-- Screen 2B: Fun Path Start (Hidden by default) -->
+    <div id="screen-2B" class="screen hidden">
+        <div class="max-w-3xl w-full card rounded-xl p-10">
+            <h2 class="text-4xl font-bold mb-6 text-accent">The First Filter: Fun</h2>
+            <p class="text-gray-600 mb-8">The algorithm noticed you chose 'Fun'. It presents two popular posts. Which one do you click?</p>
+            
+            <div class="grid grid-cols-1 gap-4">
+                <a href="#screen-3A" class="block p-4 rounded-lg bg-gray-100 hover:bg-gray-200 transition duration-300 border border-gray-300">
+                    <h3 class="text-xl font-semibold text-gray-900">"Top 10 Red Carpet Fails"</h3>
+                    <p class="text-sm text-gray-600">You won't believe what they wore to the gala.</p>
+                </a>
+                <a href="#screen-3A" class="block p-4 rounded-lg bg-gray-100 hover:bg-gray-200 transition duration-300 border border-gray-300">
+                    <h3 class="text-xl font-semibold text-gray-900">"Puppy vs. Mirror"</h3>
+                    <p class="text-sm text-gray-600">The viral video that everyone is sharing today.</p>
+                </a>
+            </div>
+             <a href="#screen-1" class="text-sm text-gray-500 hover:text-accent mt-6 block"><i class="fa-solid fa-rotate-left mr-1"></i> Restart Simulation</a>
+        </div>
+    </div>
+
+    <!-- Screen 2C: Local Path Start (Hidden by default) -->
+    <div id="screen-2C" class="screen hidden">
+        <div class="max-w-3xl w-full card rounded-xl p-10">
+            <h2 class="text-4xl font-bold mb-6 text-accent">The First Filter: Local</h2>
+            <p class="text-gray-600 mb-8">The algorithm noticed you chose 'Local'. It presents two updates. Which one matters to you?</p>
+            
+            <div class="grid grid-cols-1 gap-4">
+                <a href="#screen-3A" class="block p-4 rounded-lg bg-gray-100 hover:bg-gray-200 transition duration-300 border border-gray-300">
+                    <h3 class="text-xl font-semibold text-gray-900">"Zoning Changes on Elm St."</h3>
+                    <p class="text-sm text-gray-600">How the new proposal might affect your property value.</p>
+                </a>
+                <a href="#screen-3A" class="block p-4 rounded-lg bg-gray-100 hover:bg-gray-200 transition duration-300 border border-gray-300">
+                    <h3 class="text-xl font-semibold text-gray-900">"5-Minute Dinner Hacks"</h3>
+                    <p class="text-sm text-gray-600">Save time with these local grocery store finds.</p>
+                </a>
+            </div>
+             <a href="#screen-1" class="text-sm text-gray-500 hover:text-accent mt-6 block"><i class="fa-solid fa-rotate-left mr-1"></i> Restart Simulation</a>
+        </div>
+    </div>
+
+    <!-- Screen 3: Reinforcement (Converged Path) -->
+    <div id="screen-3A" class="screen hidden">
+        <div class="max-w-4xl w-full card rounded-xl p-10 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+                <h2 class="text-4xl font-bold mb-4 text-accent">System Confirms Interest</h2>
+                <p class="text-gray-600 mb-6">The feed instantly adjusts. Because you engaged with that last content, the algorithm now prioritizes *related* high-engagement material.</p>
+                
+                <div class="p-4 bg-gray-100 border-l-4 border-accent rounded-md text-gray-900">
+                    <h3 class="text-xl font-semibold mb-1">Recommended Video: "Why They Are Lying To You"</h3>
+                    <p class="text-sm text-gray-600">A 15-minute commentary that takes the mild topic you clicked and amplifies the emotional/fear factor by 10x.</p>
+                    <p class="text-xs text-gray-500 mt-2">Views: 2.5M • 98% Match</p>
+                </div>
+                
+                <a href="#screen-4" class="inline-block mt-8 bg-accent text-white font-bold py-3 px-6 rounded-lg hover:bg-accent-dark transition duration-300">
+                    Watch & Continue <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+            <div class="hidden md:block">
+                 <img src="https://placehold.co/400x300/e5e7eb/374151?text=Video+Mockup" alt="Placeholder for a news video thumbnail" class="w-full h-auto rounded-lg">
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 4: The Community Echo -->
+    <div id="screen-4" class="screen hidden">
+        <div class="max-w-4xl w-full card rounded-xl p-10 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+                <h2 class="text-4xl font-bold mb-4 text-accent">The Community Echo</h2>
+                <p class="text-gray-600 mb-6">You scroll down to the comments. Every top-rated comment strongly agrees with the extreme content. Dissenting voices are buried or invisible.</p>
+                <p class="text-gray-600 mb-8">You feel validated. Now, what do you do?</p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="#screen-5" class="bg-accent text-white font-bold py-3 px-6 rounded-lg hover:bg-accent-dark transition duration-300">
+                        <i class="fa-solid fa-comment-dots mr-2"></i> Add Angry Comment
+                    </a>
+                    <a href="#screen-5" class="bg-gray-400 text-gray-900 font-bold py-3 px-6 rounded-lg hover:bg-gray-500 transition duration-300">
+                        <i class="fa-solid fa-arrow-down mr-2"></i> Scroll Past
+                    </a>
+                </div>
+                <p class="text-xs text-gray-500 mt-4">*Both actions signal 'Engagement' to the algorithm.</p>
+            </div>
+            <div class="bg-gray-100 p-6 rounded-lg text-gray-900 border border-gray-300">
+                <div class="border-b border-gray-300 pb-3 mb-3">
+                    <strong class="text-accent">User123</strong>
+                    <p class="text-sm mt-1 text-gray-700">Finally someone says it! The other side is destroying everything.</p>
+                </div>
+                <div class="border-b border-gray-300 pb-3 mb-3">
+                    <strong class="text-accent">TruthSeeker</strong>
+                    <p class="text-sm mt-1 text-gray-700">100% agree. I stopped watching mainstream news years ago.</p>
+                </div>
+                 <div>
+                    <strong class="text-accent">LocalMom</strong>
+                    <p class="text-sm mt-1 text-gray-700">This is exactly what I've been telling my neighbors.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 5: Total Saturation -->
+    <div id="screen-5" class="screen hidden">
+        <div class="max-w-5xl w-full card rounded-xl p-10 text-center">
+            <h2 class="text-5xl font-extrabold mb-8 text-gray-900"><span class="text-accent">Total</span> Saturation</h2>
+            <p class="text-xl text-gray-600 mb-12">Your feed is now a "Filter Bubble." You asked for one topic, and now it is the <strong>only</strong> thing you see.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Mockup Content Tiles -->
+                <div class="p-5 rounded-lg bg-gray-100 shadow-xl border border-gray-300 text-gray-900">
+                    <img src="https://placehold.co/300x160/e5e7eb/374151?text=Breaking+Feed" alt="Mockup of a news feed" class="w-full rounded-md mb-3">
+                    <h3 class="text-lg font-semibold">Breaking Feed</h3>
+                    <p class="text-sm text-gray-600">Live updates matching your exact bias.</p>
+                </div>
+                <div class="p-5 rounded-lg bg-gray-100 shadow-xl border border-gray-300 text-gray-900">
+                    <img src="https://placehold.co/300x160/e5e7eb/374151?text=Trending+Now" alt="Mockup of viral content" class="w-full rounded-md mb-3">
+                    <h3 class="text-lg font-semibold">Trending Now</h3>
+                    <p class="text-sm text-gray-600">Everyone you follow is sharing this one viewpoint.</p>
+                </div>
+                <div class="p-5 rounded-lg bg-gray-100 shadow-xl border border-gray-300 text-gray-900">
+                    <img src="https://placehold.co/300x160/e5e7eb/374151?text=Infinite+Scroll" alt="Mockup of infinite scrolling" class="w-full rounded-md mb-3">
+                    <h3 class="text-lg font-semibold">Infinite Scroll</h3>
+                    <p class="text-sm text-gray-600">The bottom of the page does not exist. More content awaits.</p>
+                </div>
+            </div>
+
+            <p class="text-gray-900 mt-10 text-xl font-semibold">Diverse perspectives have been filtered out.</p>
+            <a href="#screen-6" class="mt-6 inline-block bg-accent text-white font-bold py-3 px-8 rounded-full hover:bg-accent-dark transition duration-300">
+                Continue Scrolling
+            </a>
+        </div>
+    </div>
+
+    <!-- Screen 6: The Ad (Monetization) -->
+    <div id="screen-6" class="screen hidden">
+        <div class="max-w-4xl w-full card rounded-xl p-10 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+             <div>
+                <h2 class="text-4xl font-bold mb-4 text-accent">The Pivot: Monetization</h2>
+                <p class="text-gray-600 mb-6">The Algorithm knows you now. It has profiled your fears and interests based on your clicks. Now, it sells that profile to advertisers.</p>
+                
+                <div class="p-4 bg-gray-100 border-l-4 border-gray-900 rounded-md text-gray-900">
+                    <p class="text-xs text-gray-500 font-semibold mb-1 tracking-widest">SPONSORED</p>
+                    <h4 class="text-xl font-semibold mb-1">Emergency Prep Kits: 50% OFF</h4>
+                    <p class="text-sm text-gray-600">The world is changing. Be ready for anything. Order now before stock runs out.</p>
+                </div>
+                <a href="#screen-7" class="inline-block mt-8 bg-accent text-white font-bold py-3 px-6 rounded-lg hover:bg-accent-dark transition duration-300">
+                    View Your Results <i class="fa-solid fa-chart-pie ml-2"></i>
+                </a>
+            </div>
+            <div class="hidden md:block">
+                <img src="https://placehold.co/400x300/e5e7eb/374151?text=Targeted+Ad" alt="Placeholder for a targeted advertisement" class="w-full h-auto rounded-lg">
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 7: Summary Data -->
+    <div id="screen-7" class="screen hidden">
+        <div class="max-w-4xl w-full card rounded-xl p-10 text-center">
+            <h2 class="text-5xl font-extrabold mb-8 text-gray-900">Your <span class="text-accent">Echo Chamber</span> Report</h2>
+            
+            <div class="flex flex-col md:flex-row items-center justify-center gap-12">
+                <div class="doughnut-chart"></div>
+                
+                <ul class="list-none text-left space-y-3 text-gray-900">
+                    <li class="flex items-center text-xl">
+                        <span class="w-4 h-4 rounded-full bg-accent mr-3"></span> 85% Reinforcing Content
+                    </li>
+                    <li class="flex items-center text-xl">
+                        <span class="w-4 h-4 rounded-full bg-gray-300 mr-3 border border-gray-400"></span> 15% Other / Ads
+                    </li>
+                </ul>
+            </div>
+            
+            <p class="text-xl text-gray-600 mt-10">You started with a simple choice. Within 5 clicks, your world narrowed to a single viewpoint.</p>
+            <a href="#screen-8" class="mt-6 inline-block bg-accent text-white font-bold py-3 px-8 rounded-full hover:bg-accent-dark transition duration-300">
+                Finish <i class="fa-solid fa-clipboard-check ml-2"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Screen 8: Outro -->
+    <div id="screen-8" class="screen hidden">
+        <div class="max-w-3xl w-full card rounded-xl p-10 text-center">
+            <h2 class="text-5xl font-extrabold mb-4 text-gray-900">The <span class="text-accent">Algorithmic</span> Autobiography</h2>
+            <p class="text-2xl text-gray-600 mb-8">This prototype demonstrates the "Black Box" of digital curation.</p>
+            
+            <p class="text-lg text-gray-700 mb-8">Project by Artez Terry</p>
+            
+            <a href="#screen-1" class="inline-block bg-gray-300 text-gray-900 font-bold py-3 px-8 rounded-lg hover:bg-gray-400 transition duration-300">
+                <i class="fa-solid fa-play-circle mr-2"></i> Restart Experience
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to handle navigation and visibility of screens
+        const screens = [
+            'screen-1', 'screen-2A', 'screen-2B', 'screen-2C', 'screen-3A', 
+            'screen-4', 'screen-5', 'screen-6', 'screen-7', 'screen-8'
+        ];
+
+        // Function to hide all screens except the target
+        function showScreen(targetId) {
+            screens.forEach(id => {
+                const screenElement = document.getElementById(id);
+                if (screenElement) {
+                    screenElement.classList.add('hidden');
+                }
+            });
+            
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                targetElement.classList.remove('hidden');
+            }
+        }
+
+        // Handle URL hash changes for navigation
+        function handleHashChange() {
+            const hash = window.location.hash.substring(1); // Get hash without the #
+            const targetId = hash || 'screen-1'; // Default to screen-1 if no hash
+
+            // Only show screens that exist in our defined list
+            if (screens.includes(targetId)) {
+                showScreen(targetId);
+            } else {
+                 showScreen('screen-1'); // Fallback
+            }
+        }
+
+        // Initialize: Check the hash on load
+        window.addEventListener('load', handleHashChange);
+        // Listen for internal anchor link changes
+        window.addEventListener('hashchange', handleHashChange);
+
+        // Initial setup for screen visibility (to ensure screen-1 is visible on first load)
+        if (!window.location.hash) {
+            showScreen('screen-1');
+        }
+
+    </script>
+</body>
+</html>
